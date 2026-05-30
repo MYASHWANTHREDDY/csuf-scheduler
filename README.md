@@ -30,6 +30,38 @@ A production-grade scheduling platform where supervisors configure constraints o
 
 ---
 
+## Screenshots
+
+### Role-based login
+Three sign-in surfaces on one screen — Employee, Supervisor/FTO, and account creation.
+![Login](docs/screenshots/01-login.png)
+
+### Admin dashboard
+Stat cards (total shifts, unassigned, conflicts, pending swaps) and the full employee roster.
+![Admin dashboard](docs/screenshots/02-admin-dashboard.png)
+
+### Weekly shift calendar
+Every officer's assignments across all seven days, with one-click auto-assign for open slots.
+![Shifts calendar](docs/screenshots/03-shifts-calendar.png)
+
+### AI schedule generator (OR-Tools CP-SAT)
+Set the date range, academic period, and per-shift staffing needs; the CP-SAT solver returns a feasible, conflict-free draft to review.
+![Schedule generator](docs/screenshots/04-schedule-generator.png)
+
+### Employee profile & availability
+Certifications, probation status, shift preferences, and recurring availability that feed the optimizer.
+![Employee profile](docs/screenshots/05-employee-profile.png)
+
+### Employee dashboard
+Personal hours, upcoming shifts, and pending swap requests at a glance.
+![Employee dashboard](docs/screenshots/06-employee-dashboard.png)
+
+### Swaps, time adjustments & timesheets
+Self-service swap requests, time-adjustment submissions, and the monthly timesheet — all in one view.
+![Swaps and timesheets](docs/screenshots/07-swaps-timesheets.png)
+
+---
+
 ## Optimization Approach
 
 The scheduling engine (`backend/app/services/scheduler/engine.py`) uses the **Google OR-Tools CP-SAT solver** — a constraint programming model over Boolean decision variables.
