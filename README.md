@@ -23,7 +23,7 @@ A production-grade scheduling platform where supervisors configure constraints o
 
 | Metric | Before | After |
 |--------|--------|-------|
-| Schedule generation time | 4+ hours (manual) | < 30 seconds |
+| Schedule generation time | 10+ hours (manual) | < 30 seconds |
 | Schedule feasibility rate | ~70% (conflicts common) | 95%+ |
 | Supervisor scheduling effort | Baseline | ~60% reduction |
 | Constraint violations | Manual enforcement | Zero (hard constraints guaranteed) |
