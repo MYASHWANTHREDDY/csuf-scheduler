@@ -11,7 +11,7 @@ A full-stack workforce scheduling platform for university student staff. Built w
 
 ## The Problem
 
-Scheduling 20+ student staff members across overlapping shifts, certification requirements, and availability windows was done manually with spreadsheets — taking supervisors 4+ hours per week and still producing conflicts. There was no audit trail, no swap workflow, and no way to enforce labor policies consistently.
+Scheduling 50+ student staff members across overlapping shifts, certification requirements, and availability windows was done manually with spreadsheets — taking supervisors 10+ hours per week and still producing conflicts. There was no audit trail, no swap workflow, and no way to enforce labor policies consistently.
 
 ## What This Builds
 
