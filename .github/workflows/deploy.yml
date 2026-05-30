@@ -1,0 +1,83 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches: [main, master, bonus-features]
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements-dev.txt
+
+      - name: Lint
+        run: |
+          black --check backend
+          isort --check-only backend
+          flake8 backend/app
+
+      - name: Run tests
+        env:
+          DATABASE_URL: sqlite:///instance/scheduler.sqlite3
+          DEMO_CREATE_DB: "1"
+          PYTHONPATH: .
+        run: pytest -q
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements-dev.txt
+
+      - name: Dependency audit
+        run: pip-audit -r backend/requirements.txt
+
+      - name: Bandit scan
+        run: bandit -q -r backend/app -s B201,B311
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: security-scan
+    if: github.ref == 'refs/heads/bonus-features'
+    env:
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_TRACES_SAMPLE_RATE: "0.1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate observability env
+        run: |
+          if [ -z "${SENTRY_DSN}" ]; then
+            echo "SENTRY_DSN is not configured. Deploy continues, but error tracking will be disabled."
+          else
+            echo "Sentry DSN detected for staging deploy."
+          fi
+
+      - name: Build image
+        run: docker build -f backend/Dockerfile -t csuf-scheduler:staging backend
+
+      - name: Staging deploy placeholder
+        run: |
+          echo "Staging deployment hook goes here (ECS/Kubernetes/VM)."
+          echo "Example: docker push + kubectl apply"

@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: csuf
+      POSTGRES_PASSWORD: csufpass
+      POSTGRES_DB: scheduler
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - redis
+
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      - db
+
+volumes:
+  db_data:

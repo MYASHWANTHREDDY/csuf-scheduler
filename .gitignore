@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Database
+*.sqlite3
+*.db
+instance/
+
+# Logs
+*.log
+logs/
+
+# Node / React
+node_modules/
+build/
+dist/
+.expo/
+mobile/.expo/
+mobile/.expo-shared/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project-specific
+backups/
+.cleanup_unwanted/

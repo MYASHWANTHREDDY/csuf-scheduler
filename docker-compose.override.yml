@@ -1,0 +1,11 @@
+services:
+  web:
+    volumes:
+      - ./backend:/app:rw
+    command: ["flask", "run", "--host=0.0.0.0", "--reload"]
+    environment:
+      - FLASK_APP=wsgi
+      - FLASK_ENV=development
+      - DEMO_CREATE_DB=1
+    ports:
+      - "5000:5000"

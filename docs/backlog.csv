@@ -1,0 +1,12 @@
+id,title,role,priority,type,acceptance_criteria
+FR-1,Create shifts,admin,High,Feature,"Shift appears in schedule; validates time window; stored in DB"
+FR-3,Assign / Override,admin,High,Feature,"Assignment persists; conflicts logged; override requires reason"
+FR-4,Approve swaps,admin,High,Feature,"Status changes; notifications sent; admin can leave note"
+FR-5,Conflicts list,admin,High,Feature,"Conflicts page shows double-booking/hour-cap with links"
+FR-8,Export weekly CSV,admin,Medium,Feature,"Downloadable CSV with hours per student"
+FR-2,Submit availability,student,High,Feature,"Saved blocks visible; prevents out-of-window assignment"
+FR-2b,Availability CRUD,student,Medium,Feature,"Students can edit/remove availability; admin can view"
+FR-3b,View schedule,student,High,Feature,"Student sees accurate assigned shifts list/calendar"
+FR-4b,Request swap,student,Medium,Feature,"Request recorded; target notified; admin approval gating"
+FR-6,Notifications,in-app,Medium,Feature,"Notification appears and is logged when relevant"
+FR-7,Audit log,admin,Medium,Non-functional,"All changes recorded with actor/timestamp/diff"

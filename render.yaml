@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: csuf-scheduler
+    runtime: python
+    pythonVersion: 3.11
+    plan: standard
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r backend/requirements.txt
+    startCommand: gunicorn --workers 4 --worker-class sync --timeout 120 --bind 0.0.0.0:$PORT wsgi:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PYTHONDONTWRITEBYTECODE
+        value: "1"

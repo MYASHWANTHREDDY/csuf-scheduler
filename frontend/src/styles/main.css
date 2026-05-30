@@ -1,0 +1,47 @@
+:root {
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --border: #dbe2ea;
+  --text: #0f172a;
+  --muted: #475569;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, 'Segoe UI', Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 12px;
+  }
+}
